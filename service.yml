@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: app-service
+  namespace: appns
+  labels:
+    name: app-serv
+spec:
+  selector:
+    app: app-node
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  type: ClusterIP
+
