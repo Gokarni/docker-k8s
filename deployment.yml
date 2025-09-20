@@ -21,6 +21,22 @@ spec:
         image: nginx:latest
         ports: 
         - containerPort: 80
+        resources:
+          requests:
+           cpu: 120m
+           memeory: 128Mi
+        limits:
+         cpu: 200m
+         memeory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+        readinessProbe:
+           httpGet:
+             path: /
+             port: 8000
+             
         volumeMounts:
         - mountPath: /var/www/html
           name: my-volume
