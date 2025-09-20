@@ -1,0 +1,38 @@
+
+kind: StatefulSet
+apiVersion: apps/v1
+metadata: 
+  name: mysql-statefulset
+  namespace: mysql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql
+
+  template:
+    metadata:
+      name: mysql-dep-pod
+      labels: 
+        app: mysql
+        
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:latest
+        ports: 
+        - containerPort: 3306
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: my-volume
+  volumesClaimTemplates:
+  - metadata: 
+      name: my-volume
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+
+
+
