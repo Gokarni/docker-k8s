@@ -6,7 +6,7 @@ metadata:
   labels:
     name: app-node
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: app-node
@@ -21,6 +21,14 @@ spec:
         image: gokarni/docker-k8s:latest
         ports:
         - containerPort: 3000
+        resources:
+          requests: 
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+
 
 
 
